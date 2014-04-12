@@ -9,3 +9,4 @@ r = requests.get('http://myanimelist.net/api/anime/search.xml' + get, auth = ('m
 print r.status_code
 print r.headers ['content-type']
 print r.text
+
