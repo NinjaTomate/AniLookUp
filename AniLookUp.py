@@ -24,6 +24,6 @@ def mal(send_data, msgarr, user):
 			Name = xmlTag.replace('<title>','').replace('</title>','')
 			Type = xmlTag.replace('<type>','').replace('</type>','')
 			Status = xmlTag.replace('<status>','').replace('</status>','')
-			send_data("PRIVMSG %s :", Name, "http://myanimlist.net/anime/" % (ID, Type, Status  variables.channel))
+			send_data("PRIVMSG %s :", Name, "http://myanimlist.net/anime/" % (ID, Type, Status, variables.channel))
 		except:
 			send_data("PRIVMSG %s : No anime found by that name, or incorrect name entered" % variables.channel)
