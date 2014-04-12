@@ -1,23 +1,25 @@
 import variables, urllib2, json as simplejson, string, HTMLParser
-from xml.dom.minidom import parseString
+from xml.dom import minidom
 
 def mal2(send_data, msgarr, user):
-
-	
 	if len(msgarr) < 2 or 'hentai' in msgarr:
 		send_data("PRIVMSG %s :No or Bad seatch string." % variables.channel)
 	else:
-		url = 'http://cdn.animenewsnetwork.com/encyclopedia/api.xml?title=~' + msgarr[0]
-		file = urllib2.urlopen(url)
-	
-		data = file.read()
-		file.close()
-		dom = parseString(data)
-		id = [elt.getAttribute('id') for elt in dom.getElementsByTagName('anime')]
-		
+		try:
+			request = string.join(msgarr[1:])
+			print request
+			data = urllib2.urlopen('http://cdn.animenewsnetwork.com/encyclopedia/api.xml?title=%s' % request).read()
+			xmldoc = minidom.parseString(data)
+			xmlTag = xmldoc.getElementsByTagName('ann')
+			print xmlTag
+			print len(xmlTag)
+			for s in xmlTag:
+				print s.attributes['warning'].value
 
-		#print xmlTag		 #	For Testing ONLY
-		#print xmlData		 #	For Testing ONLY
-		#id = str(id)
-		aniurl = 'http://www.animenewsnetwork.co.uk/encyclopedia/anime.php?id=' % id
-		send_data("PRIVMSG %s: %s" % (variables.channel, aniurl) )
+			#print xmlTag		 #	For Testing ONLY
+			#print xmlData		 #	For Testing ONLY
+
+			#send_data("PRIVMSG %s :http://www.animenewsnetwork.co.uk/encyclopedia/anime.php?id=%s" (variables.channel, id))
+		except Exception as e:
+			print e
+			send_data("PRIVMSG %s :uwaaah?~~" % variables.channel)
