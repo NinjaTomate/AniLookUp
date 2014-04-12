@@ -1,5 +1,8 @@
+__module_name__ = "mal"
+
 #Code from YT lookup module by NinjaTomate (https://github.com/NinjaTomate/UpBot/blob/master/modules/yt.py)
-import urllib2, urllib, string, HTMLParser
+
+import urllib2, urllib, string, HTMLParser, base64
 from xml.dom.minidom import parseString
 
 def mal(send_data, msgarr, user):
@@ -10,7 +13,7 @@ def mal(send_data, msgarr, user):
 			parser = HTMLParser.HTMLParser()
 			query = string.join(msgarr)[3:]
 			getTag = dom.getElementsByTagName
-			url = "http://myanimelist.net/api/anime/search.xml?q=" % query
+			url = "http://malgrabberirc:MALgrab@myanimelist.net/api/anime/search.xml?q=" % query
 			print query
 			file = urllib2.urlopen(url)
 			data = file.read()
