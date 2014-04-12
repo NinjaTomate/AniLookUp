@@ -1,5 +1,5 @@
 #Code from YT lookup module by NinjaTomate (https://github.com/NinjaTomate/UpBot/blob/master/modules/yt.py)
-import variables, urllib2, urllib, string, HTMLParser
+import urllib2, urllib, string, HTMLParser
 from xml.dom.minidom import parseString
 
 def mal(send_data, msgarr, user):
